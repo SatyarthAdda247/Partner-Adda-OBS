@@ -1,0 +1,45 @@
+name: Build OBS Adda QR Plugin (Windows)
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-2022
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Configure CMake
+        run: cmake --preset windows-x64
+
+      - name: Build plugin only
+        run: cmake --build build_windows --config RelWithDebInfo --target obs-qr-stream-key
+
+      - name: Stage installer files
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force "windows-installer\bin\64bit"
+          New-Item -ItemType Directory -Force "windows-installer\data\locale"
+          Copy-Item "build_windows\frontend\plugins\obs-qr-stream-key\RelWithDebInfo\obs-qr-stream-key.dll" `
+                    "windows-installer\bin\64bit\"
+          Copy-Item "frontend\plugins\obs-qr-stream-key\data\locale\en-US.ini" `
+                    "windows-installer\data\locale\" -ErrorAction SilentlyContinue
+
+      - name: Install NSIS
+        run: choco install nsis --yes --no-progress
+
+      - name: Build NSIS installer
+        working-directory: windows-installer
+        run: makensis obs-qr-stream-key-installer.nsi
+
+      - name: Upload installer artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: OBS-Adda-QR-Plugin-Windows-Setup
+          path: windows-installer/OBS-Adda-QR-Plugin-Setup.exe
+          retention-days: 30

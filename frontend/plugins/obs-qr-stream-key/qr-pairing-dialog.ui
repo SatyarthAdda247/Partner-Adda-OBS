@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QRPairingDialog</class>
+ <widget class="QDialog" name="QRPairingDialog">
+  <property name="geometry">
+   <rect><x>0</x><y>0</y><width>420</width><height>540</height></rect>
+  </property>
+  <property name="windowTitle">
+   <string>Adda Partner</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing"><number>14</number></property>
+
+   <!-- Mode title -->
+   <item>
+    <widget class="QLabel" name="modeTitleLabel">
+     <property name="text"><string>Connecting...</string></property>
+     <property name="alignment"><set>Qt::AlignCenter</set></property>
+    </widget>
+   </item>
+
+   <!-- QR Code - no maximumSize so the full QR is always shown -->
+   <item>
+    <widget class="QLabel" name="qrLabel">
+     <property name="alignment"><set>Qt::AlignCenter</set></property>
+     <property name="text"><string>Loading QR...</string></property>
+    </widget>
+   </item>
+
+   <!-- Status message -->
+   <item>
+    <widget class="QLabel" name="statusLabel">
+     <property name="text"><string>Scan with your Adda247 app</string></property>
+     <property name="alignment"><set>Qt::AlignCenter</set></property>
+     <property name="wordWrap"><bool>true</bool></property>
+    </widget>
+   </item>
+
+   <!-- URL reference -->
+   <item>
+    <widget class="QLabel" name="urlLabel">
+     <property name="text"><string/></property>
+     <property name="alignment"><set>Qt::AlignCenter</set></property>
+     <property name="wordWrap"><bool>true</bool></property>
+    </widget>
+   </item>
+
+   <!-- Back / Skip buttons -->
+   <item>
+    <layout class="QHBoxLayout" name="bottomRow">
+     <item>
+      <widget class="QPushButton" name="backButton">
+       <property name="text"><string>&lt; Back</string></property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="skipButton">
+       <property name="text"><string>Skip</string></property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

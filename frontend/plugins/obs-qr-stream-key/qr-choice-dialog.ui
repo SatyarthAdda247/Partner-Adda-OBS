@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QRChoiceDialog</class>
+ <widget class="QDialog" name="QRChoiceDialog">
+  <property name="geometry">
+   <rect><x>0</x><y>0</y><width>420</width><height>260</height></rect>
+  </property>
+  <property name="windowTitle">
+   <string>Adda Partner – Connect</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing"><number>18</number></property>
+
+   <!-- Title -->
+   <item>
+    <widget class="QLabel" name="titleLabel">
+     <property name="text"><string>Choose Connection Type</string></property>
+     <property name="alignment"><set>Qt::AlignCenter</set></property>
+    </widget>
+   </item>
+
+   <!-- Subtitle -->
+   <item>
+    <widget class="QLabel" name="subtitleLabel">
+     <property name="text"><string>Select how you want to connect to Adda Partner</string></property>
+     <property name="alignment"><set>Qt::AlignCenter</set></property>
+     <property name="wordWrap"><bool>true</bool></property>
+    </widget>
+   </item>
+
+   <!-- Buttons row -->
+   <item>
+    <layout class="QHBoxLayout" name="buttonRow">
+     <property name="spacing"><number>16</number></property>
+     <item>
+      <widget class="QPushButton" name="adminButton">
+       <property name="text"><string>Admin Login</string></property>
+       <property name="minimumHeight"><number>56</number></property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="youtubeButton">
+       <property name="text"><string>YouTube Live</string></property>
+       <property name="minimumHeight"><number>56</number></property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+
+   <!-- Cancel -->
+   <item>
+    <widget class="QPushButton" name="cancelButton">
+     <property name="text"><string>Cancel</string></property>
+    </widget>
+   </item>
+
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
