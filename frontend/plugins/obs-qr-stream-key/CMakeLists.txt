@@ -2,8 +2,10 @@ cmake_minimum_required(VERSION 3.28...3.30)
 
 find_package(Qt6 REQUIRED Widgets Network)
 
-# Use Homebrew OpenSSL for cpp-httplib HTTPS support
-set(OPENSSL_ROOT_DIR "/opt/homebrew/opt/openssl@3")
+if(APPLE)
+  # Use Homebrew OpenSSL for cpp-httplib HTTPS support
+  set(OPENSSL_ROOT_DIR "/opt/homebrew/opt/openssl@3")
+endif()
 find_package(OpenSSL REQUIRED)
 
 add_library(obs-qr-stream-key MODULE)
@@ -46,8 +48,10 @@ target_link_libraries(
     Qt::Network
     OpenSSL::SSL
     OpenSSL::Crypto
-    "-framework Security"
 )
+if(APPLE)
+  target_link_libraries(obs-qr-stream-key PRIVATE "-framework Security")
+endif()
 
 set_target_properties_obs(
   obs-qr-stream-key

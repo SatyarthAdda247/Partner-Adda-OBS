@@ -14,18 +14,17 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Configure CMake
-        run: cmake --preset windows-x64
-
-      - name: Build plugin only
-        run: cmake --build build_windows --config RelWithDebInfo --target obs-qr-stream-key
+      - name: Build OBS Studio
+        shell: pwsh
+        run: |
+          .github/scripts/Build-Windows.ps1 -Target x64 -Configuration RelWithDebInfo
 
       - name: Stage installer files
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force "windows-installer\bin\64bit"
           New-Item -ItemType Directory -Force "windows-installer\data\locale"
-          Copy-Item "build_windows\frontend\plugins\obs-qr-stream-key\RelWithDebInfo\obs-qr-stream-key.dll" `
+          Copy-Item "build_x64\frontend\plugins\obs-qr-stream-key\RelWithDebInfo\obs-qr-stream-key.dll" `
                     "windows-installer\bin\64bit\"
           Copy-Item "frontend\plugins\obs-qr-stream-key\data\locale\en-US.ini" `
                     "windows-installer\data\locale\" -ErrorAction SilentlyContinue
