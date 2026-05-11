@@ -4,7 +4,11 @@ find_package(Qt6 REQUIRED Widgets Network)
 
 if(APPLE)
   # Use Homebrew OpenSSL for cpp-httplib HTTPS support
-  set(OPENSSL_ROOT_DIR "/opt/homebrew/opt/openssl@3")
+  if(EXISTS "/opt/homebrew/opt/openssl@3")
+    set(OPENSSL_ROOT_DIR "/opt/homebrew/opt/openssl@3")
+  elseif(EXISTS "/usr/local/opt/openssl@3")
+    set(OPENSSL_ROOT_DIR "/usr/local/opt/openssl@3")
+  endif()
 endif()
 find_package(OpenSSL REQUIRED)
 
